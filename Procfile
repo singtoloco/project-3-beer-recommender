@@ -1,0 +1,1 @@
+web: gunicorn BeerApp.app:app

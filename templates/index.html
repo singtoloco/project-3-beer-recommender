@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Try This Beer</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.js"></script>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Vollkorn:700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/d3Style.css">
+    <script type="text/javascript" src="../static/js/autocomplete.js"></script>
+
+</head>
+
+<body>
+<!-- Header -->
+    <div class="container.fluid">
+        <div class="row" style="background-color: black">
+            <div class="jumbotron">
+                <div class="blackfill"></div>
+
+            </div>
+            <div class="title">
+                <h3 style="display:inline-block;" class="intro">TRY THIS &nbsp;</h3>
+                <h1 class="neon" style="display:inline-block;">BEER</h1>
+            </div>
+
+<!-- Nav bar -->
+            <div class="col-12 topBar">
+                <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000000;">
+                    <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav" style="margin-left: auto;">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/find">find</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/list">list<span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/group">group</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/model">model</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <div class="main"></div>
+
+        <div class="row" id="Entry">
+            <div class="col-lg-9 col-12">
+                <div class="row">
+                    <div class="col-lg-3 col-6 order-lg-0 order-0" id="Find">
+                        <div class="card topEntry cardfill">
+                            <div class="card-body ent">
+                                <hr>
+                                <p><b>Enter your top three beer names(in order of first, second and third top choice), and
+                                    you'll
+                                    receive
+                                    our top recommendations
+                                    and average ratings based on similar drinkers' tastes</b>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+<!-- Form -->
+                    <div class="col-lg-9 col-12 order-lg-1 order-2">
+                        <div class="card topEntry cardfill">
+                            <div class="card-body">
+                                <hr>
+                                <form id="my-form" method="get" action="/list">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <h6>Top Beer:&nbsp;</h6>
+                                                <td>
+                                                    <div id="beer_1" style="width:150%; height:100%;"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h6>Second Beer:&nbsp;</h6>
+                                                <td>
+                                                    <div id="beer_2" style="width:150%; height:100%;"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h6>Third Beer:&nbsp;</h6>
+                                                <td>
+                                                    <div id="beer_3" name='beerC' style="width:150%; height:100%;">
+                                                    </div>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <button type="submit" id='submit_btn1'>submit</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </form>
+                                <p class="note">*Our database contains 10000+ names of beer. If the beer you like is not
+                                    included, please
+                                    try another</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!-- Bar chart div -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card border-0">
+                            <hr>
+                            <div class="card-body border-0" id="MainStyles">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!-- Definitions -->
+            <div class="col-lg-3 col-12 order-lg-2 order-1">
+
+                
+                <div class="card border-1 scrollbar" id="topBeers">
+                    <div class="card-head grhead defhead">
+                        <h6 class="sectionTitles">Definitions</h6>
+                    </div>
+                    <div class="card-body " id='top'>
+                        <hr>
+                        <div class="col-lg-12 col-6">
+                        <p>The ratings used for the recommendation algorithm are based off of 5 main cataegories:</p>
+                        </div>
+                        <hr>
+                        <div class="row">
+                        <div class="col-lg-12 col-6">
+                        <div class="card">
+                            <div class="card-head def">
+                                <text><b>Overall:</b></text>
+                            </div>
+                            <div class="card-body definition">
+                                <p>Overall impression of the beer.</p>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-lg-12 col-6">
+                        <div class="card">
+                            <div class="card-head def">
+                                <text><b>Taste:</b></text>
+                            </div>
+                            <div class="card-body definition">
+                                <p>Malt, hops, balance, finish, aftertaste and other flavor characteristics.</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                        <div class="row">
+                        <div class="col-lg-12 col-6">
+                        <div class="card">
+                            <div class="card-head def">
+                                <text><b>Palate:</b></text>
+                            </div>
+                            <div class="card-body definition">
+                                <p>Mouthfeel, body, carbonation, warmth, etc.</p>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-lg-12 col-6">
+                        <div class="card">
+                            <div class="card-head def">
+                                <text><b>Aroma:</b></text>
+                            </div>
+                            <div class="card-body definition">
+                                <p>Malt, hops, yeast and other aromatics</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                        <div class="row">
+                        <div class="col-lg-12 col-6">
+                        <div class="card">
+                            <div class="card-head def">
+                                <text><b>Appearance:</b></text>
+                            </div>
+                            <div class="card-body definition">
+                                <p>Color, clarity, head retention, and lacing.</p>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+    <script type="text/javascript" src="../static/js/home.js"></script>
+
+</body>
+
+</html>

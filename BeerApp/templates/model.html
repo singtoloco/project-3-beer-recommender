@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Try This Beer</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.js"></script>
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Vollkorn:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="./static/css/style.css">
+  <link rel="stylesheet" href="./static/css/d3Style.css">
+
+</head>
+
+<body>
+<!-- Header -->
+  <div class="container.fluid">
+    <div class="row" style="background-color: black">
+      <div class="jumbotron">
+          <div class="blackfill"></div>
+      </div>
+      <div class="title">
+        <h3 style="display:inline-block;" class="intro">TRY THIS &nbsp;</h3>
+        <h1 class="neon" style="display:inline-block;">BEER</h1>
+      </div>
+<!-- Nav bar -->
+      <div class="col-12 topBar">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000000;">
+          <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav" style="margin-left: auto;">
+              <li class="nav-item">
+                <a class="nav-link" href="/find">find</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/list">list<span class="sr-only"></span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/group">group</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/model">model</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <body>
+      <div class="container.fluid">
+        <div class="card modelex border-0">
+          <div class="card-head">
+        <h3 class="sectionTitles">
+          What was our goal?
+        </h3>
+      </div>
+        <div class="card-body">
+          <hr>
+<!-- <Description> -->
+        <p class="model2" >After 6 months of an intensive data science bootcamp what a better topic for our final project
+          than something we all need alot of right now, beer!
+          We wanted to create recommendation system for beers, similiar to the netflix recommender. In order to do this we
+          used the KMeans unsupervised machine learning method in the sklearn package. 
+          We ran the model with the data we have and recommendations are then based off of the mean of the assigned cluster group for the beers which the user has not tried.
+          <br><br>
+          This dataset presented a few challenges:
+          <ul>
+            <li class="model">
+              <b>Dataset Size:</b> The dataset contained 33,000 users, 55,000 beer brands and 14 beer types which were reviewed by those
+              users totalling 1.5 million rows. One issue we faced was making the data "dense" or creating a dataset in which there was a more
+              even spread of of the number of beers and types of beers reviewed per user. Some users rated only a few beers other users
+              rated thousands.  We noticed that when including all users in the KMeans model we were left with extremely large clusters where
+              80% of the users were categorized into the same cluster, somthing just did not seem right.  Futhermore, when we tested those models to predict
+              a user cluster based on 3 reviews we noticed no matter how random our sample the model would always assign the user to
+              the same cluster, regrdless of the beer type which meant the model was actually clustering based upon how dense the user
+              data was as opposed to beer type.
+              
+              With over 50k beer types/columns and some users only rating a few beers it seemed as if the data density was creating a "garbage in garbage out" type scenario.<br>
+              <br>
+              After some research we realized if we fed the model a more dense dataset by filtering down using beer types instead of beer brands.
+              Since there were only 14 beer types this would create a much more dense dataset since the variance in the number of type reviews
+              would be much lower.  Intuitively this made sense since the model had more information to create more accurate clustering groups and did not have to
+              struggle to categorize users based on only a handful of reviews and 50k rows.
+            </li>
+            <br>
+            <li class="model">
+              <b>Number of Clusers:</b> Once we were confident we were feeding the model dense enough data to make accurate
+              enough cluster groups it was time for us to decide on the optimal number of clusters. One popular method in choosing the number of
+              clusters is known as the Elbow method which compares the number of clusters to the sum of squared distances. Ideally the elbow should
+              have a clear drop off or "elbow".
+              <br>
+              <br>
+              <img class = "modelpic1" style="width:50%;" src="../static/css/images/elbowG.png" />
+              <br>
+              <br>
+              <b>Uh, oh there does not seem to be a clear enough elbow and the curve is smooth!</b>
+              After more research we found that if the elbow method does not rendor clear results that the Silhouette Method can also be used to determine
+              the optimal number of groups. Essentially we are looking for large increases or "spikes" in the plot below.
+              There was a large spike around the 30 number of clusters, so we decided to go with that number of clusters.
+              <br>
+              <br>
+              <img class = "modelpic2" style="width:80%;" src="../static/css/images/silR.png" />
+              <br>
+              <br>
+            </li>
+            <br>
+            <li class="model">
+              <b>Process:</b> 
+              <br>
+              <br>
+              <img class = "modelpic2" style="width:100%;" src="../static/css/images/process.png" />
+              <br>
+              <br>
+              <b>Pre Processing:</b> 
+              Throughout this process we tried our several models, some of our models used Singular-Value Decomposition (SVD) which is used
+              for compressing, denoising, and data reduction. When we compared our models with the same number of clusters
+              for SVD and non SVD data there were not any obvious clear differences between the two. In the end we decided to go with 
+              the raw data as opposed to the SVD since there were no apparent efficiencies from transforming the data and doing so would
+              add a layer of complexity.
+            </li>
+          </ul>
+        </p>
+      </div>
+    </div>
+  </div>
+
+      </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+        <script type="text/javascript" src="../static/js/home.js"></script>
+      
+ </body>

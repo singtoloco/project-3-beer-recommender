@@ -1,0 +1,88 @@
+.form-control {
+  outline: none;
+  box-sizing: border-box;
+  border-radius: 0;
+  width: 130%;
+}
+.form-control:focus {
+  border: 1px solid #555;
+}
+input {
+  outline: none;
+  box-sizing: border-box;
+  border-radius: 0;
+}
+.form-control::placeholder {
+  color: #afaeae;
+}
+.bp-autocomplete-dropdown {
+  position: absolute;
+  height: 220px;
+  width: 390px;
+  background-color: white;
+  overflow-y: scroll;
+  z-index: 100;
+}
+.titleboxes {
+  width:  50%;
+  height: 10%;
+}
+.active {
+  font-weight: bold;
+  fill: #c9c9c9;
+  transition: fill 0.3s ease-out;
+  text-anchor: middle;
+}
+.inactive {
+  font-weight: lighter;
+  fill: rgb(65, 64, 64);
+  transition: fill 0.3s ease-out;
+  text-anchor: middle;
+}
+#ratings3 {
+  margin-top: 3%;
+}
+.img_holder {
+  padding-top: 5%;
+  width: 100%;
+  height: 90%;
+}
+.table_card {
+  margin-left: 5%;
+  font-size: 0.75rem;
+  background-color: transparent;
+}
+.sum_th {
+  color: dimgray;
+}
+.sum_td {
+  color: #555;
+}
+.radarchart {
+  margin-top: -8%;
+}
+.d3-tip {
+  padding: 6px;
+  font-size: 12px;
+  line-height: 1;
+  line-height: 1.5em;
+  color: #fff;
+  text-align: center;
+  text-transform: capitalize;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+}
+.d3-tip_bubble {
+  padding: 6px;
+  font-size: 12px;
+  line-height: 1;
+  line-height: 1.5em;
+  color: #fff;
+  text-align: center;
+  text-transform: capitalize;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+}
+.rscaleNote {
+  transform: translate(50px, 10px);
+}
