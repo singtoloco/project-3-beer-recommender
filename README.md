@@ -1,6 +1,3 @@
-# kmeans-beer-recommender
+# beer-recommender
 
-These files are the main files which should be included in the BeerApp folder itself.
-All of them except the "db" file need to also be included in the same folder as initdb.py, requirements.txt etc.
-
-See heroku_extra_files for heroku deployment instructions
+Implementation of k-means clustering (unsupervised machine learning) on the filtered data from 1.5 million rows of beer reviews dataset which contain approximately 33,000 users, 55,000 beer names, and 14 different main beer styles.
